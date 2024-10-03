@@ -19,7 +19,8 @@ EOF
 header_info
 echo -e "\n Loading..."
 GEN_MAC=02:$(openssl rand -hex 5 | awk '{print toupper($0)}' | sed 's/\(..\)/\1:/g; s/.$//')
-NEXTID=$(pvesh get /cluster/nextid)
+####NEXTID=$(pvesh get /cluster/nextid)
+NEXTID=$1
 VERSIONS=(stable beta dev)
 for version in "${VERSIONS[@]}"; do
   eval "$version=$(curl -s https://raw.githubusercontent.com/home-assistant/version/master/$version.json | grep "ova" | cut -d '"' -f 4)"
